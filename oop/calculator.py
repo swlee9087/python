@@ -26,24 +26,28 @@ class Calculator(object):
             if menu == '0':
                 break
             elif menu == '1':
-                print('*'*100)
+                print('*' * 100)
                 print(f'{calc.num1}+{calc.num2} = {calc.add()}')
-                print('*'*100)
+                print('*' * 100)
                 break
-            elif menu =='2':
+            elif menu == '2':
                 print('*' * 100)
                 print(f'{calc.num1}-{calc.num2} = {calc.subtract()}')
                 print('*' * 100)
                 break
-            elif menu =='3':
+            elif menu == '3':
                 print('*' * 100)
                 print(f'{calc.num1}*{calc.num2} = {calc.multiply()}')
                 print('*' * 100)
                 break
-            elif menu =='4':
+            elif menu == '4':
                 print('*' * 100)
                 print(f'{calc.num1}/{calc.num2} = {calc.divide()}')
                 print('*' * 100)
                 break
-            else: print('Wrong selected number')
+            else:
+                print('Wrong selected number')
             break
+
+
+Calculator.main()
