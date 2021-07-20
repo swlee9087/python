@@ -1,4 +1,4 @@
-class Contact(object):
+class Contacts(object):
 
     def __init__(self, name, phone, email, address):  # inst factor designated
         self.name = name
@@ -11,25 +11,30 @@ class Contact(object):
 
 
 def set_contact():
-    return Contact(input('Name: '), input('Number: '), input('Email; '), input('Address: '))  # inst on RAM.
+    return Contacts(input('Name: '), input('Number: '), input('Email; '), input('Address: '))
+    # inst on RAM. name/number etc = 0D
 
 
 def get_contact(ls):  # print directly
-    for i in ls:  # i=element, ls=obj
+    for i in ls:  # i=element 1D, ls=obj 2D
         i.to_string()
 
 
 def del_contact(ls, name):
-    for i, j in enumerate(ls):  # ??
-        if i.name == name:
+    for i, j in enumerate(ls):  # i=index bc index needed for data coordinate
+        if name == j.name:  # no 'switch' in py, so. i=fixed, j=variable
             del ls[i]
 
 
-def print_menu(ls):
-    for i, j in enumerate(ls):  # i=index element
-        print(str(i) + '-' + j + '\t')
-    return int(input())
-
+def print_menu(ls):  # ????
+    t = ' '  # for-in cannot use join fn, so sep ln
+    for i, j in enumerate(ls):
+        t += str(i)+'-'+j+'\t'
+    return int(input(t))
+"""
+ls = ['exit', 'add', 'search', 'delete']
+    str = ' | '
+    print(str.join(ls))"""
 
 def main():
     ls = []
@@ -43,7 +48,7 @@ def main():
         elif menu == '3':
             del_contact(ls, input('Delete Contact'))
         else:
-            return
+            break
 
 
 if __name__ == '__main__':
