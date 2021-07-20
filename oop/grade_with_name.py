@@ -7,9 +7,11 @@ name, 총점, 평균, 학점 출력.
 
 class Grade(object):
 
-    def __int__(self, name):
+    def __int__(self, name, kor, eng, math):
         self.name = name
-        self.scores = []
+        self.kor = kor
+        self.eng = eng
+        self.math = math
 
     def addScores(self, score):
         self.scores.append(score)
@@ -18,28 +20,27 @@ class Grade(object):
         return sum(self.scores) / len(self.scores)
 
 
-    @staticmethod
-    def main():
-        grade = Grade(input('Input Student Name : '))
+def main():
+    grade = Grade(input('Input Student Name : '))
 
-        for i in ['Korean', 'English', 'Math']:
-            grade.addScores(int(input(f'{i}: ')))
+    for i in ['Korean', 'English', 'Math']:
+        grade.addScores(int(input(f'{i}: ')))
 
-        avg = grade.avg()
+    avg = grade.avg()
 
-        if avg >= 90:
-            result = 'A'
-        elif avg >= 80:
-            result = 'B'
-        elif avg >= 70:
-            result = 'C'
-        elif avg >= 60:
-            result = 'D'
-        elif avg <= 50:
-            result = 'E'
-        else:
-            result = 'F'
-        print(f'{result}')
+    if avg >= 90:
+        result = 'A'
+    elif avg >= 80:
+        result = 'B'
+    elif avg >= 70:
+        result = 'C'
+    elif avg >= 60:
+        result = 'D'
+    elif avg <= 50:
+        result = 'E'
+    else:
+        result = 'F'
+    print(f'{result}')
 
 
-Grade.main()
+main()

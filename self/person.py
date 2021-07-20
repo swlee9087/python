@@ -5,20 +5,21 @@ class Person(object):
         self.age = age
         self.address = address
 
-    def to_string(self):  # this is the matrix form to show
-        print(f'\n[Personal Info] '
-              f'\nName : {self.name}'
-              f'\nAge : {self.age}'
-              f'\nAddress: {self.address}\n')
+    def to_string(self):
+        print(f'\nPersonal File: \n'
+              f'Name - {self.name}\n'
+              f'Age - {self.age}\n'
+              f'Address - {self.address}\n')
 
 
 def main():
     persons = []
     while 1:
-        print('\n0=exit 1=add 2=print')
-        menu = input('Choose 1 option. ')
+        print('\n 0-exit 1-add 2-list')
+        menu = input('choose 1. ')
+
         if menu == '1':
-            persons.append(Person(input('name '), input('age '), input('address ')))
+            persons.append(Person(input('name'), input('age'), input('address')))
         elif menu == '2':
             for i in persons:
                 i.to_string()
