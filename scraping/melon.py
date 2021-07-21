@@ -7,13 +7,11 @@ from urllib.request import urlopen
 class Melon(object):
     def __init__(self, url):
         self.url = url
+        self.headers = {'User-Agent': 'Mozilla/5.0'}
         n_ = 0
 
     def scrap(self):
-        header = {'User-Agent': 'Mozilla/5.0'}
-        #modi = urllib.request.Request(self.url, headers=header)
-        #htmlcontent = urllib.request.urlopen(modi).read()
-        soup = BeautifulSoup(urlopen(Request(self.url, headers=header)), 'lxml')
+        soup = BeautifulSoup(urlopen(Request(self.url, headers=self.headers)), 'lxml')# 한줄로 줄임
         _ = 1
         artists = soup.find_all(name='div', attrs={'class': 'ellipsis rank02'})  # artist
         titles = soup.find_all(name='div', attrs={'class': 'ellipsis rank01'})  # title

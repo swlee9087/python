@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+
 """지원 parser종류
 html.parser - 빠르나 유연하지 못한. 그래서 단순 html에만.
 lxml - 매우 빠르고 유연함.
@@ -21,7 +22,7 @@ class Bugsmusic(object):
         titles = soup.find_all(name='p', attrs={'class': 'title'})
         print(f'list size is {len(artists)}')
 
-        for i,j in enumerate(artists):  # for문으로 한줄
+        for i, j in enumerate(artists):  # for문으로 한줄
             print(f"* Rank {str(_)}  Artist : {j.find('a').text} | Title : {titles[i].find('a').text}")
             _ += 1
 
