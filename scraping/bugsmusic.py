@@ -1,4 +1,3 @@
-import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
@@ -24,18 +23,16 @@ class Bugsmusic(object):
 
         for i in ls:  # for문으로 한줄
             n_artists += 1
-            print("Rank " + str(n_artists) + " Artists : " + i.find('a').text)
+            print("* Rank " + str(n_artists) + " Artists : " + i.find('a').text)
+            print(" Title : " + ls2[n_title].find('a').text)
             n_title += 1
-            print("Rank " + str(n_title) + " Title : " + ls2[n_title].find('a').text)
 
 
 def main():
     # 20210720
     # 16
-    # Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?'
-    # f'chartdate={input("Date : ")}&charthour={input("Hour : ")}').scrap()
-    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?'
-              f'chartdate={"20210720"}&charthour={"16"}').scrap()
+    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate=20210721&charthour=09').scrap()
+    # Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate={"20210721"}&charthour={"09"}').scrap()
 
 
 if __name__ == '__main__':
