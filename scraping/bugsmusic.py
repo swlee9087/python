@@ -12,27 +12,24 @@ html5lib - 복잡구조의 html에 대해 사용.
 class Bugsmusic(object):
     def __init__(self, url):
         self.url = url
+        n_ = 0
 
     def scrap(self):
         soup = BeautifulSoup(urlopen(self.url), 'lxml')  # BS constrc 안에 urlopen() 함수
-        n_artists = 0
-        n_title = 0
-        ls = soup.find_all(name='p', attrs={'class': 'artist'})
-        ls2 = soup.find_all(name='p', attrs={'class': 'title'})
-        print(f'list size is {len(ls)}')
+        _ = 1
+        artists = soup.find_all(name='p', attrs={'class': 'artist'})
+        titles = soup.find_all(name='p', attrs={'class': 'title'})
+        print(f'list size is {len(artists)}')
 
-        for i in ls:  # for문으로 한줄
-            n_artists += 1
-            print("* Rank " + str(n_artists) + " Artists : " + i.find('a').text)
-            print(" Title : " + ls2[n_title].find('a').text)
-            n_title += 1
+        for i,j in enumerate(artists):  # for문으로 한줄
+            print(f"* Rank {str(_)}  Artist : {j.find('a').text} | Title : {titles[i].find('a').text}")
+            _ += 1
 
 
 def main():
     # 20210720
     # 16
-    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate=20210721&charthour=09').scrap()
-    # Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate={"20210721"}&charthour={"09"}').scrap()
+    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate={"20210721"}&charthour={"09"}').scrap()
 
 
 if __name__ == '__main__':
