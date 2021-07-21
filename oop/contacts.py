@@ -11,12 +11,15 @@ class Contacts(object):
 
 
 def set_contact():
-    return Contacts(input('Name: '), input('Number: '), input('Email; '), input('Address: '))
+    return Contacts(input('Name: '), input('Number: '),
+                    input('Email; '), input('Address: '))
     # inst on RAM. name/number etc = 0D
 
 
-def get_contact(ls):  # print directly
+def get_contact(self):  # print directly
     for i in ls:  # i=element 1D, ls=obj 2D
+        Contacts(input('Name: '), input('Number: '),
+                    input('Email; '), input('Address: '))
         i.to_string()
 
 
@@ -26,28 +29,31 @@ def del_contact(ls, name):
             del ls[i]
 
 
-def print_menu(ls):  # ????
-    t = ' '  # for-in cannot use join fn, so sep ln
+def print_menu(ls):
+    t = ' '
     for i, j in enumerate(ls):
         t += str(i)+'-'+j+'\t'
     return int(input(t))
-"""
-ls = ['exit', 'add', 'search', 'delete']
-    str = ' | '
-    print(str.join(ls))"""
 
 def main():
     ls = []
     while 1:
-        menu = print_menu(['exit', 'add', 'print', 'delete'])
-        if menu == '1':
+        menu = print_menu(['exit', 'add', 'print', 'delete', 'edit'])
+        if menu == 1:
             t = set_contact()
             ls.append(t)
-        elif menu == '2':
-            get_contact(ls)
-        elif menu == '3':
+        elif menu == 2:
+            for i in ls:
+                print({i.get_contact()})
+        elif menu == 3:
             del_contact(ls, input('Delete Contact'))
+            for i, j in enumerate(ls):
+                if j.name == del_name:
+                    del ls[i]
+        elif menu == 4:
+            pass
         else:
+            print('try again')
             break
 
 

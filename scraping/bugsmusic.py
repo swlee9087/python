@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-
 """지원 parser종류
 html.parser - 빠르나 유연하지 못한. 그래서 단순 html에만.
 lxml - 매우 빠르고 유연함.
@@ -30,7 +29,8 @@ class Bugsmusic(object):
 def main():
     # 20210720
     # 16
-    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?chartdate={"20210721"}&charthour={"09"}').scrap()
+    Bugsmusic(f'https://music.bugs.co.kr/chart/track/realtime/total?'
+              f'chartdate={"20210721"}&charthour={"09"}').scrap()
 
 
 if __name__ == '__main__':
