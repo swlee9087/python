@@ -34,23 +34,6 @@ class MusicRanking(object):
             self.artists.append(i.find('a').text)
             self.titles.append(j.find('a').text)
 
-    def insert_dict(self):
-        # for i in range(0, len(self.tag_name)):
-        #    self.dict[self.titles[i]] = self.artists[i]
-        # for i, j in zip(self.titles, self.artists):
-        #    self.dict[i] = j
-        for i, j in enumerate(self.titles):
-            self.dict[j] = self.artists[i]
-        print(dict)
-
-    def dict_to_dataframe(self):
-        self.df = pd.DataFrame.from_dict(self.dict, orient='index')
-        print(self.df)
-
-    def df_to_csv(self):
-        path = f'./data/{self.fname}.csv'
-        self.df.to_csv(path, sep=',', na_rep='NaN')  # not typo
-
 
 def print_menu(ls):
     t = ''
@@ -91,14 +74,10 @@ def main():
             mr.class_name.append('ellipsis rank01')
             mr.get_ranking()
 
-        elif menu == 5:  # print dict
-            mr.insert_dict()
-
-        elif menu == 6:  # dc to df
-            mr.dict_to_dataframe()
-
-        elif menu == 7:  # df to csv
-            mr.df_to_csv()
+            '''for i,j in artists:
+                print(i)
+                for j in'''
+            # pass
 
 
 if __name__ == '__main__':
