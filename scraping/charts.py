@@ -4,6 +4,13 @@ import requests
 from urllib.request import urlopen
 from urllib.request import Request
 
+from common.menu import print_menu
+from scraping.bugsmusic import Bugsmusic
+from scraping.melon import Melon
+from scraping.models.dataset import Dataset
+from scraping.models.service import Service
+from scraping.views import view
+
 
 class MusicRanking(object):
     domain = ''  # string
@@ -17,6 +24,9 @@ class MusicRanking(object):
     titles = []
     dict = {}
     df = None  # matrix
+    bugs = Bugsmusic()
+    melon = Melon()
+
 
     def set_html(self):
         self.html = requests.get(f'{self.domain}{self.query_string}', headers=self.headers).text
@@ -52,53 +62,47 @@ class MusicRanking(object):
         self.df.to_csv(path, sep=',', na_rep='NaN')  # not typo
 
 
-def print_menu(ls):
-    t = ''
-    for i, j in enumerate(ls):
-        t += str(i) + '-' + j + '\t'
-    return int(input(t))
-
-
 def main():
     mr = MusicRanking()
     while 1:
-        '''print('0-exit 1-input 2-output 3-print dict 4-dict to Df 5-Df to csv')
-        menu = input('Choose one: ')'''
         n_ = 0
-        menu = print_menu(['exit', 'Bugs URL', 'Melon URL', 'Bugs output', 'Melon output',
-                           'Print Dict', 'Dict to Df', 'Df to CSV'])
+        menu = print_menu(['exit', 'Bugs URL', 'Melon URL', 'Output',
+                           'Print Dict', 'Dict to Df', 'Df to CSV', 'Read from CSV'])
         if menu == 0:
             break
-        elif menu == 1:  # bugs url
+        elif menu == 1:  # bugs url to html
             mr.domain = 'https://music.bugs.co.kr/chart/track/realtime/total?'
             mr.query_string = 'chartdate=20210721&charthour=14'
             mr.set_html()
 
-        elif menu == 2:  # melon url
+        elif menu == 2:  # melon url to html
             mr.domain = 'https://www.melon.com/chart/index.htm?dayTime='
             mr.query_string = '2021072114'
             mr.set_html()
 
-        elif menu == 3:  # crawling output bugs
-            mr.tag_name = 'p'
-            mr.class_name.append('artist')
-            mr.class_name.append('title')
-            mr.get_ranking()
+        elif menu == 3:  # crawling output
 
-        elif menu == 4:  # output melon
-            mr.tag_name = 'div'
-            mr.class_name.append('ellipsis rank02')
-            mr.class_name.append('ellipsis rank01')
-            mr.get_ranking()
+            for i, j in zip(, melon):
+                if mr.tag_name = 'p'
+                mr.class_name.append('artist')
+                mr.class_name.append('title')
 
-        elif menu == 5:  # print dict
+                mr.tag_name = 'div'
+                mr.class_name.append('ellipsis rank02')
+                mr.class_name.append('ellipsis rank01')
+                mr.get_ranking()
+
+        elif menu == 4:  # print dict
             mr.insert_dict()
 
-        elif menu == 6:  # dc to df
+        elif menu == 5:  # dc to df
             mr.dict_to_dataframe()
 
-        elif menu == 7:  # df to csv
+        elif menu == 6:  # df to csv
             mr.df_to_csv()
+
+        elif menu == 7:  # read from csv
+            view.modeling('','')
 
 
 if __name__ == '__main__':
