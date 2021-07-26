@@ -59,7 +59,9 @@ class TemperatureChangesOnMyBirthday(object):
                     if i[0].split('-')[1] == '08' and i[0].split('-')[2] == '07':
                         high.append(float(i[-1]))
                         low.append(float(i[-2]))
-
+        plt.rc('font', family='Malgun Gothic')
+        plt.rcParams['axes.unicode_minus'] = False
+        plt.title('Temp changes on my birthdays')
         plt.plot(high, 'pink', label='high')
         plt.plot(low, 'skyblue', label='low')
         plt.legend()
