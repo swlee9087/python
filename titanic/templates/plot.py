@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from matplotlib import font_manager, rc
 import seaborn as sns
 
-#PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
+# PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 
 rc('font', family=font_manager.FontProperties(fname='C:/Windows/Fonts/H2GTRE.ttf').get_name())
 
@@ -19,10 +19,26 @@ class Plot(object):
 
     def show_plot_survived_dead(self):
         this = self.df
-        f, ax = plt.subplots(1, 2, figsize=(18, 8))  #f=line, ax=col
-        this['Survived'].value_counts().plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)  # ret data will print in col type
+        f, ax = plt.subplots(1, 2, figsize=(18, 8))  # f=line, ax=col
+        series = this['Survived'].value_counts()  # ret data will print in col type = df->series
+        print(type(series))
+        print(series)
+        series.plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
         ax[0].set_title('0.사망 VS 1.생존')
         ax[0].set_ylabel('')
         ax[1].set_title('0.사망 VS 1.생존')
         sns.countplot('Survived', data=this, ax=ax[1])
+        plt.show()
+
+    def show_plot_pclass(self):
+        this = self.df
+        this['생존결과'] = this['Survived'].replace(0, '사망자').replace(1, '생존자')
+        this['좌석등급'] = this['Pclass'].replace(1, '일등석').replace(2, '이등석').replace(3, '삼등석')
+        sns.countplot(data=this, x='좌석등급', hue='생존결과')
+        plt.show()
+
+    def show_plot_embarked(self):
+        this = self.df
+        this['승선항구'] = this['Embarked'].replace(C, '쉘버그').replace(S, '사우스햄튼').replace(Q, '퀸즈타운')
+        sns.countplot(data=this, x='숭선항구')
         plt.show()
