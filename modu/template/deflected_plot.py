@@ -15,16 +15,10 @@ but if used in various methods then will be init in field.
 
 class TemperatureChangesOnMyBirthday(object):
     data: [] = list()
-    max_temps: [] = list()
-
-    #    min_temps: [] = list()
 
     def processing(self):  # hooking method order
         self.read_data()
-        self.max_temps_birthday()
-
-    #        self.visualize_data()
-    #        self.extract_date_data()
+        self.birthday_temps()
 
     def read_data(self):
         data = csv.reader(open('./data/unit05_seoul.csv', 'rt', encoding='UTF-8'))
@@ -50,7 +44,7 @@ class TemperatureChangesOnMyBirthday(object):
         #        plt.legend()
         plt.show()"""
 
-    def max_temps_birthday(self):
+    def birthday_temps(self):
         high = []
         low = []
         for i in self.data:
@@ -67,15 +61,8 @@ class TemperatureChangesOnMyBirthday(object):
         plt.legend()
         plt.show()
 
-    def extract_date_data(self):
-        pass
-
 
 if __name__ == '__main__':
     this = TemperatureChangesOnMyBirthday()
     this.read_data()
-#    this.show_max_temps()
-#    this.visualize_max_temps()
-    this.read_data()
-    this.max_temps_birthday()
-#    this.extract_date_data()
+    this.birthday_temps()
