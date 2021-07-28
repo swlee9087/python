@@ -33,12 +33,25 @@ class Plot(object):
     def show_plot_pclass(self):
         this = self.df
         this['생존결과'] = this['Survived'].replace(0, '사망자').replace(1, '생존자')
-        this['좌석등급'] = this['Pclass'].replace(1, '일등석').replace(2, '이등석').replace(3, '삼등석')
+        this['좌석등급'] = this['Pclass'].replace(1, '1등급').replace(2, '2등급').replace(3, '3등급')
         sns.countplot(data=this, x='좌석등급', hue='생존결과')
         plt.show()
 
     def show_plot_embarked(self):
         this = self.df
-        this['승선항구'] = this['Embarked'].replace(C, '쉘버그').replace(S, '사우스햄튼').replace(Q, '퀸즈타운')
-        sns.countplot(data=this, x='숭선항구')
+        this['생존결과'] = this['Survived'].replace(0, '사망자').replace(1, '생존자')
+        this['승선항구'] = this['Embarked'].replace('C', '쉘버그').replace('S', '사우스햄튼').replace('Q', '퀸즈타운')
+        sns.countplot(data=this, x='승선항구', hue='생존결과')
+        plt.show()
+
+    def show_plot_sex(self):
+        this = self.df
+        f, ax = plt.subplots(1, 2, figsize=(18, 8))
+        male_series = this['Survived'][this['Sex'] == 'male'].value_counts()
+        female_series = this['Survived'][this['Sex'] == 'female'].value_counts()
+        male_series.plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
+        female_series.plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
+        ax[0].set_title('남성의 생존비율 0.사망 VS 1.생존')
+        ax[0].set_ylabel('')
+        ax[1].set_title('여성의 생존비율 0.사망 VS 1.생존')
         plt.show()
