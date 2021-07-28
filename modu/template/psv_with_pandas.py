@@ -57,10 +57,12 @@ class Population(object):
         plt.plot()
         plt.show()"""
 
-    def find_home(self, name: str) -> []:
+    def find_home(self, name: str) -> []:  # 인트 바꾸지 마시오
         home = []
+        # name = input('조사 대상 지역 (읍면동) 입력: ')
         [home.append(int(j)) for i in self.data if name in i[0] for j in i[3:]]
         self.home = home
+        print(home)
 
     def array_to_list(self, arr) -> []:
         return arr.to_list()
@@ -69,7 +71,7 @@ class Population(object):
         return np.array(ls)
 
     def show_plot_home(self, arr: object, name: str):
-        plt.title(f'{name}지역의 인구구조')
+        plt.title(f'{name} 지역의 인구구조')
         plt.plot(arr)
         plt.show()
 
@@ -85,6 +87,6 @@ if __name__ == '__main__':
     # pop.find_dong_pd()
     # pop.show_plot(pop.find_dong_pd())
     # pop.find_similar_dong_pd(pop.find_dong_pd())
-    pop.find_home('필동')
+    pop.find_home('보광동')
     arr_home = pop.list_to_array(pop.home)
-    pop.show_plot_home(arr_home, '필동')
+    pop.show_plot_home(arr_home, '보광동')
